@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+<record id="doctor_view_tree" model="ir.ui.view">
+            <field name="name">doctor.tree</field>
+            <field name="model">doctor</field>
+            <field name="arch" type="xml">
+
+                <tree>
+
+                    <field name="firstname"/>
+                    <field name="image"/>
+                    <field name="lastname"/>
+                     <field name="patient_id" widget="many2many_tags"/>
+
+
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_doctor_form" model="ir.ui.view">
+            <field name="name">doctor.form</field>
+            <field name="model">doctor</field>
+            <field name="arch" type="xml">
+                <form>
+
+                        <sheet>
+                            <group>
+                                <group>
+                                    <field name="firstname" />
+                                    <field name="lastname"/>
+                                    <field name="image" widget="image"/>
+                                    <field name="patient_id" widget="many2many_tags"/>
+                                </group>
+
+                            </group>
+<!--                            <notebook>-->
+<!--                        <page string="History" name="devices">-->
+<!--                            <field name="history_id" >-->
+<!--                                <tree editable="button">-->
+<!--                                    <field name="create_uid"/>-->
+<!--                                    <field name="create_date"/>-->
+<!--                                    <field name="description"/>-->
+<!--                                </tree>-->
+<!--                            </field>-->
+<!--                            </page>-->
+<!--                            </notebook>-->
+                        </sheet>
+                </form>
+            </field>
+        </record>
+<!--    <record id="warning_model_kanban" model="ir.ui.view">-->
+<!--        <field name="name">ticket.kanban</field>-->
+<!--        <field name="model">ticket</field>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <kanban>-->
+<!--                <field name="name"/>-->
+<!--                <field name="number"/>-->
+<!--                <field name="tag"/>-->
+<!--                <field name="state"/>-->
+<!--                <templates>-->
+<!--                    <t t-name="kanban-box">-->
+<!--                        <div t-attf-class="oe_kanban_global_click">-->
+<!--                            <div class="row">-->
+<!--                                <div class="col-6">-->
+<!--                                    <strong>-->
+<!--                                        name:-->
+<!--                                        <field name="name"/>-->
+<!--                                    </strong>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div class="row">-->
+<!--                                <div class="col-6">-->
+<!--                                    <strong>-->
+<!--                                       number:-->
+<!--                                         <field name="number"/>-->
+<!--                                    </strong>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div class="row">-->
+<!--                                <div class="col-6">-->
+<!--                                    <strong>-->
+<!--                                        Tag:-->
+<!--                                        <field name="tag"/>-->
+<!--                                    </strong>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div>-->
+<!--                                <strong>state:</strong>-->
+<!--                                <field name="state"/>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </t>-->
+<!--                </templates>-->
+<!--            </kanban>-->
+<!--        </field>-->
+<!--    </record>-->
+    <record id="view_search_ticket" model="ir.ui.view">
+        <field name="name">patient Search</field>
+        <field name="model">patient</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="firstname"/>
+<!--                 <field name="number"/>-->
+<!--                <filter name="active" string="Active" domain="[('active', '=', True)]"/>-->
+<!--                <filter name="active" string="Un-Active" domain="[('active', '!=', True)]"/>-->
+<!--                <filter name="date" string="Date" context="{'group_by':'date_published'}"/>-->
+<!--                <filter name="active" string="Active" context="{'group_by':'active'}"/>-->
+            </search>
+        </field>
+    </record>
+
+        <record id="doctor_action_view" model="ir.actions.act_window">
+            <field name="name">Doctor</field>
+            <field name="res_model">doctor</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+    <menuitem id="doctor" name="doctor" parent="hms" action="doctor_action_view" sequence="4"/>
+
+
+</odoo>

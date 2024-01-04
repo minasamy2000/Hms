@@ -1,0 +1,78 @@
+<odoo>
+    <data>
+        <record id="action_report_event_registration_full_page_ticket" model="ir.actions.report">
+        <field name="name">Patient report</field>
+        <field name="model">patient</field>
+        <field name="report_type">qweb-html</field>
+        <field name="report_name">Hms.patient_templates</field>
+        <field name="report_file">Hms.patient_templates</field>
+        <field name="binding_model_id" ref="model_patient"/>
+        <field name="binding_type">report</field>
+
+    </record>
+        <template id="patient_templates">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="web.external_layout">
+                        <div class="page">
+                            <div class="container">
+                                <div class="row mb-2">
+                                    <div class="col-6">
+                                        <h1 class="text-danger">Patient Status Report</h1>
+                                    </div>
+                                    <div class="col-6 text-center">
+<!--                                        <span t-field="o.image" t-field-options='{"widget": "image"}'/>-->
+
+                                        <img width="150" height="100" t-attf-src="data:image/*;base64,{{o.image}}"/>
+<!--                                        <p>image should be here</p>-->
+                                    </div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-6">
+
+                                        <p><b>name:</b> <span t-esc="o.firstname" /> <span t-esc="o.lastname" /></p>
+                                        <p><b>Age:</b> <span t-esc="o.age" /> </p>
+                                        <p><b>Department:</b> <span t-esc="o.department_id.name" /> </p>
+                                        <p><b>Doctors:</b>
+                                            <t t-foreach="o.doctor_id" t-as="doctor">
+                                                <span t-esc="doctor.firstname" />,
+                                            </t>
+                                        </p>
+                                    </div>
+                                    <div class="col-6">
+                                        <p><b>Birth date: </b> <span t-esc="o.Birthday" /> </p>
+                                        <p><b>PCR: </b> <span t-esc="o.pcr" /> </p>
+                                        <p><b>Blood Type: </b> <span t-esc="o.blood" /> </p>
+<!--                                        <p><b>Email: </b> <span t-esc="o.email" /> </p>-->
+                                    </div>
+
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-12">
+                                        <h3 class="text-center text-danger">Log History</h3>
+                                        <table class="table table-striped">
+                                            <thead>
+                                                <th>User</th>
+                                                <th>Date</th>
+                                                <th>Info</th>
+                                            </thead>
+                                            <tbody>
+                                                <t t-foreach="o.history_id" t-as="p_history">
+                                                    <tr>
+                                                        <td><span t-esc="p_history.create_uid.name" /></td>
+                                                        <td><span t-esc="p_history.create_date" /></td>
+                                                        <td><span t-esc="p_history.description" /></td>
+                                                    </tr>
+                                                </t>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

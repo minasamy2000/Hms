@@ -1,0 +1,34 @@
+<odoo>
+    <data >
+        <record id="patient_record_rule" model="ir.rule">
+            <field name="name">Patient record rule</field>
+            <field name="model_id" ref="model_patient"/>
+            <field name="groups" eval="[(4, ref('Hms.hms_user'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="False"/>
+            <field name="domain_force">[('create_uid','=', user.id)]</field>
+        </record>
+         <record id="department_record_rule" model="ir.rule">
+            <field name="name">department record rule</field>
+            <field name="model_id" ref="model_department"/>
+            <field name="groups" eval="[(4, ref('Hms.hms_user'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="False"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+            <field name="domain_force">[('create_uid','=', user.id)]</field>
+        </record>
+         <record id="doctor_record_rule" model="ir.rule">
+            <field name="name">doctor record rule</field>
+            <field name="model_id" ref="model_doctor"/>
+            <field name="groups" eval="[(4, ref('Hms.hms_user'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="False"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+            <field name="domain_force">[('create_uid','=', user.id)]</field>
+        </record>
+    </data>
+</odoo>
